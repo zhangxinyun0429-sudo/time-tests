@@ -26,7 +26,27 @@ def compute_overlap_time(range1, range2):
             if low < high:
                 overlap_time.append((low, high))
     return overlap_time
-
+def test_given_input():
+    """测试示例中给定的输入"""
+    # 创建大的时间范围
+    large = time_range("2010-01-12 10:00:00", "2010-01-12 12:00:00")
+    
+    # 创建小的时间范围（2个区间，间隔60秒）
+    short = time_range("2010-01-12 10:30:00", "2010-01-12 10:45:00", 2, 60)
+    
+    # 计算重叠时间（这是实际结果）
+    result = compute_overlap_time(large, short)
+    
+    # 期望的结果（从原程序的输出复制而来）
+    expected = [
+        ('2010-01-12 10:30:00', '2010-01-12 10:37:00'),
+        ('2010-01-12 10:38:00', '2010-01-12 10:45:00')
+    ]
+    
+    # 断言：检查结果是否等于期望值
+    assert result == expected
+    
+    
 
 # if __name__ == "__main__":
 #     large = time_range("2010-01-12 10:00:00", "2010-01-12 12:00:00")
@@ -80,6 +100,4 @@ def iss_passes(api_key):
     except requests.exceptions.RequestException as e:
         print(f"Error fetching ISS passes: {e}")
         return []
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-        return []
+    
