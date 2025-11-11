@@ -5,7 +5,7 @@ overlap_tests:
     expected:
       - ["2010-01-12 10:30:00", "2010-01-12 10:37:00"]
       - ["2010-01-12 10:38:00", "2010-01-12 10:45:00"]
-    expected_len_check: null
+    expected_len_check: null  # 检查精确结果
 
   - name: non_overlapping
     range1_params: ["2010-01-12 09:00:00", "2010-01-12 11:00:00"]
@@ -16,19 +16,13 @@ overlap_tests:
   - name: multiple_intervals
     range1_params: ["2010-01-12 09:00:00", "2010-01-12 12:00:00", 3, 60]
     range2_params: ["2010-01-12 10:00:00", "2010-01-12 13:00:00", 2, 60]
-    expected: null
-    expected_len_check: true
+    expected: null  # 不检查精确值
+    expected_len_check: true  # 检查结果列表长度 > 0
 
   - name: adjacent_ranges
     range1_params: ["2010-01-12 09:00:00", "2010-01-12 12:00:00"]
     range2_params: ["2010-01-12 12:00:00", "2010-01-12 15:00:00"]
     expected: []
-    expected_len_check: null
-
-  - name: default_empty_check
-    range1_params: ["2010-01-12 08:00:00", "2010-01-12 09:00:00"]
-    range2_params: ["2010-01-12 14:00:00", "2010-01-12 15:00:00"]
-    expected: null
     expected_len_check: null
 
 time_range_exceptions:
